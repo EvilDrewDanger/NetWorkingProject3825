@@ -2,10 +2,11 @@
     <!--Navigation Bar -->
     <header class="site-header">
         <%= link_to "TIC TAC TOE", root_path, class: "brand" %>
-
+        
+        <!-- #s are placeholders for now-->
         <nav class="header-actions">
             <%= link_to "Log In", "#", class: "nav-btn login-btn" %>
-            <%= link_to "Sign Up", "#", class: "nav_btn signup-btn" %>
+            <%= link_to "Sign Up", "#", class: "nav-btn signup-btn" %>
         </nav>
     </header>
     
@@ -24,19 +25,19 @@
                 <span class="option-icon">♧</span>
                 <h2>Find a match</h2>
                 <p>Play online</p>
-            <% end>
+            <% end %>
 
             <%= link_to "#", class: "option-card" do %>
                 <span class="option-icon">♙</span>
                 <h2>Play a Friend</h2>
                 <p>Private match</p>
-            <% end>
+            <% end %>
 
             <%= link_to "#", class: "option-card" do %>
                 <span class="option-icon">▣</span>
                 <h2>Play a bot</h2>
                 <p>Practice solo</p>
-            <% end>
+            <% end %>
 
             <%= link_to "#", class: "option-card" do %>
                 <span class="option-icon">▤</span>
