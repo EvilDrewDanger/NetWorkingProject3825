@@ -1,24 +1,10 @@
-# README
+# Tic Tac Toe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Rails 7.2 application uses Ruby 3.3.6 and PostgreSQL.
 
-Things you may want to cover:
+Install dependencies with `bundle install`, configure PostgreSQL as needed in
+`config/database.yml` or with `DATABASE_URL`, and run `bin/rails db:prepare`.
+Start the app with `bin/rails server`. The homepage is at `/` and account
+registration is at `/signup`. The other homepage links are placeholders.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run the test suite with `bin/rails test`.
