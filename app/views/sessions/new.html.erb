@@ -1,0 +1,28 @@
+<main class="auth-page">
+  <div class="auth-card">
+    <%= link_to "TIC TAC TOE", root_path, class: "auth-brand" %>
+    <h1>Log In</h1>
+    <p class="auth-intro">Welcome back. Sign in to your account.</p>
+
+    <%= form_with scope: :session, url: login_path, class: "auth-form" do |f| %>
+      <% if flash.now[:alert] %>
+        <div class="auth-errors" role="alert"><%= flash.now[:alert] %></div>
+      <% end %>
+
+      <div class="auth-field">
+        <%= f.label :username, "Username" %>
+        <%= f.text_field :username, value: @username, autocomplete: "username" %>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :password, "Password" %>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <%= f.submit "Log In", class: "auth-submit" %>
+    <% end %>
+
+    <p class="auth-links">Need an account? <%= link_to "Sign Up", signup_path %></p>
+    <%= link_to "Back to homepage", root_path, class: "auth-back" %>
+  </div>
+</main>
