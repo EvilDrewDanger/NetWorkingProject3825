@@ -1,4 +1,14 @@
 class SessionsController < ApplicationController
+  LOGIN_RATE_LIMIT_STORE = ActiveSupport::Cache::FileStore.new(
+    Rails.root.join("tmp", "login-rate-limits", Rails.env)
+  )
+
+  rate_limit to: 5, within: 3.minutes, only: :create, store: LOGIN_RATE_LIMIT_STORE,
+    with: -> {
+      flash.now[:alert] = "Too many login attempts. Please try again later."
+      render :new, status: :too_many_requests
+    }
+
   def new
   end
 
