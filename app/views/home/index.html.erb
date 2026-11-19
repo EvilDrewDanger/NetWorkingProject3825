@@ -1,0 +1,63 @@
+<div class="home-page">
+    <!--Navigation Bar -->
+    <header class="site-header">
+        <%= link_to "TIC TAC TOE", root_path, class: "brand" %>
+
+        <nav class="header-actions">
+            <% if current_user %>
+                <span>Logged in as: <%= current_user.display_name %></span>
+                <%= button_to "Logout", logout_path, method: :delete, class: "nav-btn login-btn logout-btn" %>
+            <% else %>
+                <%= link_to "Log In", "#", class: "nav-btn login-btn" %>
+                <%= link_to "Sign Up", signup_path, class: "nav-btn signup-btn" %>
+            <% end %>
+        </nav>
+    </header>
+
+    <main class="home-container">
+        <!-- Welcome -->
+        <section class="hero">
+            <h1>Ready to Play Tic Tac Toe?</h1>
+            <p>Challenge your friends, play strangers online, or practice against a bot.</p>
+        </section>
+
+        <!-- Game Options -->
+        <section class="game-options">
+            <div class="option-grid">
+
+            <%= link_to "#", class: "option-card" do %>
+                <span class="option-icon">♧</span>
+                <h2>Find a match</h2>
+                <p>Play online</p>
+            <% end %>
+
+            <%= link_to "#", class: "option-card" do %>
+                <span class="option-icon">♙</span>
+                <h2>Play a Friend</h2>
+                <p>Private match</p>
+            <% end %>
+
+            <%= link_to "#", class: "option-card" do %>
+                <span class="option-icon">▣</span>
+                <h2>Play a bot</h2>
+                <p>Practice solo</p>
+            <% end %>
+
+            <%= link_to "#", class: "option-card" do %>
+                <span class="option-icon">▤</span>
+                <h2>Learn the Rules</h2>
+                <p>How to play</p>
+            <% end %>
+
+            </div>
+        </section>
+
+        <!-- Learning Links -->
+        <footer class= "home-footer">
+            <%= link_to "Beginners Guide", "#" %>
+            <span class="footer-divider">•</span>
+            <%= link_to "Experts Guide", "#" %>
+        </footer>
+
+    </main>
+</div>

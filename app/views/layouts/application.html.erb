@@ -18,6 +18,9 @@
   </head>
 
   <body>
+    <% if notice.present? %>
+      <p role="status"><%= notice %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
