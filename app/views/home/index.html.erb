@@ -3,10 +3,14 @@
     <header class="site-header">
         <%= link_to "TIC TAC TOE", root_path, class: "brand" %>
 
-        <!-- #s are placeholders for now-->
         <nav class="header-actions">
-            <%= link_to "Log In", "#", class: "nav-btn login-btn" %>
-            <%= link_to "Sign Up", signup_path, class: "nav-btn signup-btn" %>
+            <% if current_user %>
+                <span>Logged in as: <%= current_user.display_name %></span>
+                <%= button_to "Logout", logout_path, method: :delete, class: "nav-btn login-btn logout-btn" %>
+            <% else %>
+                <%= link_to "Log In", "#", class: "nav-btn login-btn" %>
+                <%= link_to "Sign Up", signup_path, class: "nav-btn signup-btn" %>
+            <% end %>
         </nav>
     </header>
 

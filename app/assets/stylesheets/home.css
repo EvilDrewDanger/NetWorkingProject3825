@@ -31,6 +31,7 @@ body {
 
 .header-actions {
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
@@ -48,6 +49,12 @@ body {
 
 .signup-btn {
     background-color: #2563eb;
+}
+
+.logout-btn {
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 /* Hero Section*/
@@ -144,6 +151,11 @@ body {
   .nav-btn {
     padding: 9px;
     font-size: 12px;
+  }
+
+  .header-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .option-grid {
