@@ -1,0 +1,22 @@
+<div class="game-page">
+  <h1>Tic Tac Toe</h1>
+
+  <p id="turn-message">Your turn (X)</p>
+
+  <div class="game-board">
+    <% 9.times do |i| %>
+      <button
+        type="button"
+        class="game-cell"
+        data-index="<%= i %>"
+        aria-label="Square <%= i + 1 %>">
+      </button>
+    <% end %>
+  </div>
+
+  <button type="button" id="reset-game">
+    Play Again
+  </button>
+
+  <%= link_to "Back to Home", root_path %>
+</div>
