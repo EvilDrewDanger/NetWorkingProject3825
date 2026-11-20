@@ -1,46 +1,55 @@
-<h1>Sign Up</h1>
+<main class="auth-page">
+  <div class="auth-card">
+    <%= link_to "TIC TAC TOE", root_path, class: "auth-brand" %>
+    <h1>Sign Up</h1>
+    <p class="auth-intro">Create an account to get started.</p>
 
-<%= button_to "Back", root_path, method: :get %>
-
-<%= form_with model: @user, url: users_path do |f| %>
-  <% if @user.errors.any? %>
-    <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+    <%= form_with model: @user, url: users_path, class: "auth-form" do |f| %>
+      <% if @user.errors.any? %>
+        <div class="auth-errors" role="alert">
+          <p>There was a problem creating your account:</p>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    </ul>
-  <% end %>
 
-  <div>
-    <%= f.label :username, "Username" %>
-    <%= f.text_field :username %>
+      <div class="auth-field">
+        <%= f.label :username, "Username" %>
+        <%= f.text_field :username, autocomplete: "username" %>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :display_name, "Display name" %>
+        <%= f.text_field :display_name, autocomplete: "nickname" %>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :date_of_birth, "Date of birth" %>
+        <%= f.date_field :date_of_birth, autocomplete: "bday" %>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :skill_level, "Skill level" %>
+        <%= f.select :skill_level, User.skill_levels.keys.map { |k| [k.capitalize, k] } %>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :password, "Password" %>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="auth-field">
+        <%= f.label :password_confirmation, "Password confirmation" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <%= f.submit "Create account", class: "auth-submit" %>
+    <% end %>
+
+    <p class="auth-links">Already have an account? <%= link_to "Log In", login_path %></p>
+    <%= link_to "Back to homepage", root_path, class: "auth-back" %>
   </div>
-
-  <div>
-    <%= f.label :display_name, "Display name" %>
-    <%= f.text_field :display_name %>
-  </div>
-
-  <div>
-    <%= f.label :date_of_birth, "Date of birth" %>
-    <%= f.date_field :date_of_birth %>
-  </div>
-
-  <div>
-    <%= f.label :skill_level, "Skill level" %>
-    <%= f.select :skill_level,
-          User.skill_levels.keys.map { |k| [k.capitalize, k] } %>
-  </div>
-
-  <div>
-    <%= f.label :password, "Password" %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div>
-    <%= f.label :password_confirmation, "Password confirmation" %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <%= f.submit "Create account" %>
-<% end %>
+</main>

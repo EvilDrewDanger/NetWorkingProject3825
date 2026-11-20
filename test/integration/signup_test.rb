@@ -6,7 +6,7 @@ class SignupTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", "Ready to Play Tic Tac Toe?"
     assert_select "a[href=?]", signup_path, text: "Sign Up"
-    assert_select "a", text: "Log In"
+    assert_select "a[href=?]", login_path, text: "Log In"
 
     get signup_path
     assert_response :success
