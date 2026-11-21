@@ -11,8 +11,10 @@ registration is at `/signup`, and login is at `/login`. New accounts are signed
 in automatically; use Logout on the homepage to end the session.
 
 Signed-in users can choose **Play a Friend** to host a room and share its
-eight-character code, or join a room with a code. Rooms are lobbies only;
-gameplay is not yet available. Each room reserves two user slots, including
+eight-character code, or join a room with a code. The server validates and
+synchronizes moves. X is assigned randomly for the first game, and players
+swap marks after both request a rematch. Play pauses when either player is
+disconnected. Each room reserves two user slots, including
 while a player is disconnected. A room closes after both players have been
 disconnected for 10 seconds, and all rooms are lost when the server restarts.
 The countdown starts when the server detects the last disconnection, which may

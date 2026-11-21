@@ -30,4 +30,23 @@ class FriendRoomChannelTest < ActionCable::Channel::TestCase
     subscribe code: @code
     assert subscription.rejected?
   end
+
+  test "broadcasts valid moves and reports invalid actions only to the sender" do
+    room = FriendRoomRegistry.instance.join(@code, @friend)
+    player, other = room[:players].first[:mark] == "X" ? [ @host, @friend ] : [ @friend, @host ]
+    FriendRoomRegistry.instance.connect(@code, other.id, "other-connection")
+    stub_connection current_user: player
+    subscribe code: @code
+
+    assert_broadcasts "friend_room_#{@code}", 1 do
+      perform :play, index: 0
+    end
+    assert_equal "X", FriendRoomRegistry.instance.for_player(@code, player.id)[:board][0]
+    assert_no_broadcasts "friend_room_#{@code}" do
+      perform :play, index: 1
+    end
+    assert_equal "It is not your turn.", transmissions.last["error"]
+    perform :request_rematch
+    assert_equal "The game is still in progress.", transmissions.last["error"]
+  end
 end

@@ -31,6 +31,7 @@ class FriendRoomsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select "strong", code
     assert_select "[data-controller='friend-room']"
+    assert_select ".friend-room-board button[disabled]", 9
 
     delete logout_path
     login(@friend)

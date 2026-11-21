@@ -14,6 +14,16 @@ class FriendRoomChannel < ApplicationCable::Channel
     room ? transmit(room) : reject
   end
 
+  def play(data)
+    result = FriendRoomRegistry.instance.play(@code, current_user.id, @connection_id, data["index"])
+    broadcast_result(result)
+  end
+
+  def request_rematch
+    result = FriendRoomRegistry.instance.request_rematch(@code, current_user.id, @connection_id)
+    broadcast_result(result)
+  end
+
   def unsubscribed
     return unless current_user && @connection_id
 
@@ -22,6 +32,14 @@ class FriendRoomChannel < ApplicationCable::Channel
   end
 
   private
+
+  def broadcast_result(result)
+    if result[:error]
+      transmit({ error: result[:error] })
+    else
+      ActionCable.server.broadcast(stream_name, result[:room])
+    end
+  end
 
   def stream_name
     "friend_room_#{@code}"
