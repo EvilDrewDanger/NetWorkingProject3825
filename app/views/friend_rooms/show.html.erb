@@ -1,0 +1,11 @@
+<main class="auth-page">
+  <div class="auth-card" data-controller="friend-room" data-friend-room-code-value="<%= @room[:code] %>">
+    <%= link_to "TIC TAC TOE", root_path, class: "auth-brand" %>
+    <h1>Friend Room</h1>
+    <p>Share this code with your friend: <strong><%= @room[:code] %></strong></p>
+    <p role="status" aria-live="polite" data-friend-room-target="status">Connecting to room...</p>
+    <ul data-friend-room-target="players"></ul>
+    <p class="auth-intro">Gameplay is not available in this room yet.</p>
+    <p class="auth-links"><%= link_to "Leave room", friend_rooms_path %></p>
+  </div>
+</main>
