@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
   get "play_bot", to: "games#bot", as: :play_bot
+  resources :friend_rooms, only: [ :index, :create, :show ], param: :code do
+    post :join, on: :collection
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

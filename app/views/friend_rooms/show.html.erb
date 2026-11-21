@@ -1,0 +1,22 @@
+<main class="auth-page">
+  <div class="auth-card" data-controller="friend-room" data-friend-room-code-value="<%= @room[:code] %>"
+       data-friend-room-player-slot-value="<%= @room[:player_slot] %>">
+    <%= link_to "TIC TAC TOE", root_path, class: "auth-brand" %>
+    <h1>Friend Room</h1>
+    <p>Share this code with your friend: <strong><%= @room[:code] %></strong></p>
+    <p role="status" aria-live="polite" data-friend-room-target="status">Connecting to room...</p>
+    <ul data-friend-room-target="players"></ul>
+    <p role="status" aria-live="polite" data-friend-room-target="gameStatus">Waiting for the room...</p>
+    <p role="alert" data-friend-room-target="error"></p>
+    <div class="game-board friend-room-board" aria-label="Tic Tac Toe board">
+      <% 9.times do |i| %>
+        <button type="button" class="game-cell" data-friend-room-target="cell"
+                data-action="friend-room#play" data-index="<%= i %>" aria-label="Square <%= i + 1 %>" disabled></button>
+      <% end %>
+    </div>
+    <button type="button" class="auth-submit" data-friend-room-target="rematch"
+            data-action="friend-room#requestRematch" hidden disabled>Request rematch</button>
+    <p role="status" data-friend-room-target="rematchStatus"></p>
+    <p class="auth-links"><%= link_to "Leave room", friend_rooms_path %></p>
+  </div>
+</main>

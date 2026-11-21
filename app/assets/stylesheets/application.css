@@ -32,3 +32,15 @@
   border: 2px solid #333;
   border-radius: 8px;
 }
+
+.friend-room-board {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: none;
+  width: min(100%, 310px);
+}
+
+.friend-room-board .game-cell {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}

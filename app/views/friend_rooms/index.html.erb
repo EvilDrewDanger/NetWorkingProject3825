@@ -1,0 +1,25 @@
+<main class="auth-page">
+  <div class="auth-card">
+    <%= link_to "TIC TAC TOE", root_path, class: "auth-brand" %>
+    <h1>Play a Friend</h1>
+    <p class="auth-intro">Host a room or join one using your friend's code.</p>
+
+    <% if flash[:alert] %>
+      <div class="auth-errors" role="alert"><p><%= flash[:alert] %></p></div>
+    <% end %>
+
+    <%= button_to "Host a game", friend_rooms_path, class: "auth-submit" %>
+
+    <h2>Join a game</h2>
+    <%= form_with url: join_friend_rooms_path, class: "auth-form" do |f| %>
+      <div class="auth-field">
+        <%= f.label :code, "Room code" %>
+        <%= f.text_field :code, value: params[:code], maxlength: 8, minlength: 8,
+          pattern: "[A-Za-z0-9]{8}", autocomplete: "off", required: true %>
+      </div>
+      <%= f.submit "Join a game", class: "auth-submit" %>
+    <% end %>
+
+    <p class="auth-links"><%= link_to "Back to homepage", root_path %></p>
+  </div>
+</main>
